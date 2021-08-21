@@ -2,12 +2,12 @@
 #include <string>
 #include <stdlib.h>
 #include "Game.h"
+#include <SDL2/SDL.h>
 
 using namespace std;
 
-int main(){
-    int a;
+int main(int argc, char *argv[]){
     cout << "Game cpp" << endl;
 
-    return 0;
+    return 1;
 }
