@@ -8,8 +8,10 @@
 
 using namespace std;
 
-void Game(const char * title, int width, int height){
+//SDL_Renderer* state = nullptr;
+SDL_Renderer* renderer = nullptr;
 
+void Game(const char * title, int width, int height){
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER) == 0){
         clog << endl << "SDL_Init Sucess" << endl << endl;
 
@@ -58,7 +60,7 @@ void Game(const char * title, int width, int height){
         clog << "window" << window << endl;
     }
 
-    SDL_Renderer* renderer =  SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    renderer =  SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if(window == nullptr){
         clog << "SDL_Renderer error: " << SDL_GetError() << endl;
     }else{
@@ -66,13 +68,21 @@ void Game(const char * title, int width, int height){
     }
 }
 
+
 void DestructorGame(){
+}
+
+SDL_Renderer* getRenderer(){
+    return renderer;
+}
+
+void run(){
 
 }
 
 int main(int argc, char *argv[]){
     // Open window
-    Game("Game TAC", 100, 100);
+    Game("William Coelho da Silva - 180029274", 1024, 600);
 
     return 1;
 }
