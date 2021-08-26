@@ -8,10 +8,10 @@
 
 using namespace std;
 
-int main(int argc, char *argv[]){
-    
+void Game(const char * title, int width, int height){
+
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER) == 0){
-        clog << "SDL_Init Sucess" << endl << endl;
+        clog << endl << "SDL_Init Sucess" << endl << endl;
 
         // Flags for init
         int IMG_Flags = IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF;
@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
             clog << "IMG_Init Sucess" << endl << endl;
         }else{
             clog << "IMG_Init Failure: " << IMG_GetError() << endl << endl;
-            return 0;
+            return;
         }
 
         // Init SDL_Mix
@@ -33,19 +33,46 @@ int main(int argc, char *argv[]){
                 clog << "Mix_OpenAudio Sucess" << endl;
             }else{
                 clog << "Mix_OpenAudio Failure: " << Mix_GetError() << endl;
-                return 0;
+                return;
             }
+            
+            if(Mix_AllocateChannels(32)){
+                clog << "Mix_AllocateChannels Sucess" << endl << endl;
+            }else{
+                clog << "Mix_AllocateChannels Failure: " << Mix_GetError() << endl << endl;
+                return;
+            }
+            
         }else{
             clog << "Mix_Init Failure: " << Mix_GetError() << endl;
-            return 0;
+            return;
         }
-
-        // Open window
-        
-
     }else{
         clog << "SDL_Init Failure" << endl;
     }
+    
+    SDL_Window* window = SDL_CreateWindow(title, 0, 0, 0, width, height);
+    if(window == nullptr){
+        clog << "SDL_Window error: " << SDL_GetError() << endl;
+    }else{
+        clog << "window" << window << endl;
+    }
+
+    SDL_Renderer* renderer =  SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    if(window == nullptr){
+        clog << "SDL_Renderer error: " << SDL_GetError() << endl;
+    }else{
+        clog << "renderer" << renderer << endl << endl;
+    }
+}
+
+void DestructorGame(){
+
+}
+
+int main(int argc, char *argv[]){
+    // Open window
+    Game("Game TAC", 100, 100);
 
     return 1;
 }
