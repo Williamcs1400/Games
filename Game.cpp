@@ -2,6 +2,7 @@
 #include <string>
 #include <stdlib.h>
 #include "Game.h"
+#include "State.cpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
@@ -78,6 +79,17 @@ SDL_Renderer* getRenderer(){
 
 void run(){
 
+    State* a = new State;
+    a->state();
+
+    while(a->QuitRequested()){
+
+        //a->Update();
+        //a->Render();
+
+        SDL_Delay(33);
+        
+    }
 }
 
 int main(int argc, char *argv[]){

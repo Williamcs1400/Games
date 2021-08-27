@@ -8,26 +8,29 @@
 
 using namespace std;
 
-void State(){
-    SDL_QuitRequested();
+class State{
+    public:
+        void state(){
+            SDL_QuitRequested();
+        }
 
-}
+        void LoadAssets(){
 
-void LoadAssets(){
+        }
 
-}
+        void Update(float dt){
 
-void Update(float dt){
+        }
 
-}
+        void Render(){
 
-void render(){
+        }
 
-}
+        bool QuitRequested(){ 
+        }
+};
 
-bool QuitRequested(){
-    
-}
+
 
 int main(int argc, char *argv[]){
 
