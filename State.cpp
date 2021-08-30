@@ -1,40 +1,24 @@
-#include <iostream>
-#include <string>
-#include <stdlib.h>
-#include "Game.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_mixer.h>
+#include "State.hpp"
 
 using namespace std;
 
-class State{
-    public:
-        void state(){
-            SDL_QuitRequested();
-        }
+State::State(){
+    quitRequested = false;
+    //bg = new Sprite(); 
+}
 
-        void LoadAssets(){
+void State::LoadAssets(){
+}
 
-        }
+void State::Update(float dt){
+    if(SDL_QuitRequested() == true){
+        quitRequested = true;
+    }
+}
 
-        void Update(float dt){
+void State::Render(){
+}
 
-        }
-
-        void Render(){
-
-        }
-
-        bool QuitRequested(){ 
-        }
-};
-
-
-
-int main(int argc, char *argv[]){
-
-
-
-    return 1;
+bool State::getQuitRequested(){ 
+    return quitRequested;
 }

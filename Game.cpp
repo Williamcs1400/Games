@@ -1,18 +1,9 @@
-#include <iostream>
-#include <string>
-#include <stdlib.h>
-#include "Game.h"
-#include "State.cpp"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_mixer.h>
+#include "Game.hpp"
+
 
 using namespace std;
 
-//SDL_Renderer* state = nullptr;
-SDL_Renderer* renderer = nullptr;
-
-void Game(const char * title, int width, int height){
+Game::Game(const char* title, int width, int height){
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER) == 0){
         clog << endl << "SDL_Init Sucess" << endl << endl;
 
@@ -58,43 +49,52 @@ void Game(const char * title, int width, int height){
     if(window == nullptr){
         clog << "SDL_Window error: " << SDL_GetError() << endl;
     }else{
-        clog << "window" << window << endl;
+        clog << "window: " << window << endl;
     }
 
     renderer =  SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if(window == nullptr){
         clog << "SDL_Renderer error: " << SDL_GetError() << endl;
     }else{
-        clog << "renderer" << renderer << endl << endl;
+        clog << "renderer: " << renderer << endl << endl;
     }
 }
 
+Game::~Game(){}
 
-void DestructorGame(){
-}
-
-SDL_Renderer* getRenderer(){
+SDL_Renderer* Game::getRenderer(){
     return renderer;
 }
 
-void run(){
+State& Game::getState(){
+    return *state;
+}
 
-    State* a = new State;
-    a->state();
+Game* Game::getInstance(){
+    if(instance != nullptr){
+        clog << endl << "Create a new instance" << endl;
+        instance = new Game("William Coelho da Silva - 180029274", 1024, 600);
+        clog << endl << "instance: " << instance << endl;
+    }else{
+        clog << endl << "Instance already exists" << endl;
+    }
+    return instance;
+}
 
-    while(a->QuitRequested()){
-
-        //a->Update();
-        //a->Render();
-
+void Game::Run(){
+    state = new State();
+    while(state->getQuitRequested()){
+        state->Update(0);
+        state->Render();
         SDL_Delay(33);
-        
     }
 }
 
 int main(int argc, char *argv[]){
-    // Open window
-    Game("William Coelho da Silva - 180029274", 1024, 600);
 
+    // Call the constructor
+    Game* game;
+    game = game->getInstance();
+            
     return 1;
 }

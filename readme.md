@@ -6,5 +6,5 @@
 #### Para compilar basta ter a biblioteca STD_Include no seu Path do TDM_GCC e executar o seguinte comando: 
 
 ``` 
-g++ -std=c17 Game.cpp -Wall -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -o Game
+g++ -std=c++11 Game.cpp -Wall -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -o Game
 ```
