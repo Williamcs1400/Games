@@ -16,9 +16,8 @@ Sprite::~Sprite(){
 }
 
 void Sprite::Open(const char* file){
-    Game* game;
-    game = game->getInstance();
-    texture =  IMG_LoadTexture(game->getRenderer(), file);
+    Game& game = Game::getInstance();
+    texture =  IMG_LoadTexture(game.getRenderer(), file);
     if(texture == nullptr){
         clog << "Open error: " << SDL_GetError() << endl;
     }else{
@@ -36,8 +35,7 @@ void Sprite::setClip(int x, int y, int w, int h){
 }
 
 void Sprite::render(int x, int y){
-    Game* game;
-    game = game->getInstance();
+    Game& game = Game::getInstance();
     //SDL_RenderCopy(game->getRenderer(), texture, clipRect, )
 }
 

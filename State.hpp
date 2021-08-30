@@ -22,7 +22,7 @@
         private:
             Sprite bg;
             // Music music;
-            bool quitRequested;
+            bool quitRequested = true;
     };
 
 #endif

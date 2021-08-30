@@ -16,12 +16,12 @@
         public:
             ~Game();
             SDL_Renderer* getRenderer();
-            Game* getInstance();
+            static Game& getInstance();
             State& getState();
             void Run();
         private:
             Game(const char* title, int width, int height);
-            Game* instance;
+            static Game* instance;
             SDL_Renderer* renderer;
             SDL_Window* window;
             State* state;

@@ -1,7 +1,8 @@
 #include "Game.hpp"
 
-
 using namespace std;
+
+Game* Game::instance = nullptr;
 
 Game::Game(const char* title, int width, int height){
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER) == 0){
@@ -70,19 +71,20 @@ State& Game::getState(){
     return *state;
 }
 
-Game* Game::getInstance(){
-    if(instance != nullptr){
+Game& Game::getInstance(){
+    if(instance == nullptr){
         clog << endl << "Create a new instance" << endl;
         instance = new Game("William Coelho da Silva - 180029274", 1024, 600);
         clog << endl << "instance: " << instance << endl;
     }else{
         clog << endl << "Instance already exists" << endl;
     }
-    return instance;
+    return *instance;
 }
 
 void Game::Run(){
     state = new State();
+    clog << endl << "Run the game: " << state->getQuitRequested() << endl;
     while(state->getQuitRequested()){
         state->Update(0);
         state->Render();
@@ -93,8 +95,8 @@ void Game::Run(){
 int main(int argc, char *argv[]){
 
     // Call the constructor
-    Game* game;
-    game = game->getInstance();
+    Game& game = Game::getInstance();
+    game.Run();
             
     return 1;
 }

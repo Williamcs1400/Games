@@ -4,10 +4,11 @@ using namespace std;
 
 State::State(){
     quitRequested = false;
-    //bg = new Sprite(); 
+    bg = Sprite(); 
 }
 
 void State::LoadAssets(){
+    
 }
 
 void State::Update(float dt){
