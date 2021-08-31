@@ -2,6 +2,7 @@
 #include "Game.hpp"
 
 using namespace std;
+
 Sprite::Sprite(){
     texture = nullptr;
 }
@@ -12,10 +13,16 @@ Sprite::Sprite(const char* file){
 }
 
 Sprite::~Sprite(){
-    
+    if(isOpen()){
+        SDL_DestroyTexture(texture);
+    }
 }
 
 void Sprite::Open(const char* file){
+    if(isOpen()){
+        SDL_DestroyTexture(texture);
+    }
+
     Game& game = Game::getInstance();
     texture =  IMG_LoadTexture(game.getRenderer(), file);
     if(texture == nullptr){
@@ -23,7 +30,8 @@ void Sprite::Open(const char* file){
     }else{
         clog << "IMG_LoadTexture sucess: " << SDL_GetError() << endl;
         int query = SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
-
+        clog << "query: " << query << endl;
+        setClip(0, 0, width, height);
     }
 }
 
@@ -35,8 +43,17 @@ void Sprite::setClip(int x, int y, int w, int h){
 }
 
 void Sprite::render(int x, int y){
+    SDL_Rect rect;
+    rect.x = x;
+    rect.y = y;
+    rect.w = width;
+    rect.h = height;
+
     Game& game = Game::getInstance();
-    //SDL_RenderCopy(game->getRenderer(), texture, clipRect, )
+    if(isOpen()){
+        SDL_RenderCopy(game.getRenderer(), texture, &clipRect, &rect);
+    }
+    
 }
 
 int Sprite::getWidth(){

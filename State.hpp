@@ -11,6 +11,7 @@
     #include <SDL2/SDL_image.h>
     #include <SDL2/SDL_mixer.h>
     #include "Sprite.hpp"
+    #include "Music.hpp"
 
     class State{
         public:
@@ -20,8 +21,8 @@
             void Render();
             bool getQuitRequested();
         private:
-            Sprite bg;
-            // Music music;
+            Sprite *bg;
+            Music* music;
             bool quitRequested = true;
     };
 

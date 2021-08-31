@@ -46,7 +46,8 @@
         "streambuf": "cpp",
         "cinttypes": "cpp",
         "typeinfo": "cpp",
-        "*.dll": "cpp"
+        "*.dll": "cpp",
+        "*.jpg": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }

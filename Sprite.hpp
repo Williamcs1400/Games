@@ -26,7 +26,7 @@
         private:
             SDL_Texture* texture;
             SDL_Rect clipRect;
-            int width;
+            int width ;
             int height;
     };
 

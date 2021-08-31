@@ -5,6 +5,12 @@ using namespace std;
 Game* Game::instance = nullptr;
 
 Game::Game(const char* title, int width, int height){
+    if(instance == nullptr){
+        instance = this;
+    }else{
+        clog << "ERROR!!!" << endl;
+    }
+
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER) == 0){
         clog << endl << "SDL_Init Sucess" << endl << endl;
 
@@ -46,7 +52,7 @@ Game::Game(const char* title, int width, int height){
         clog << "SDL_Init Failure" << endl;
     }
     
-    SDL_Window* window = SDL_CreateWindow(title, 0, 0, 0, width, height);
+    SDL_Window* window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
     if(window == nullptr){
         clog << "SDL_Window error: " << SDL_GetError() << endl;
     }else{
@@ -59,9 +65,17 @@ Game::Game(const char* title, int width, int height){
     }else{
         clog << "renderer: " << renderer << endl << endl;
     }
+
+    state = new State();
 }
 
-Game::~Game(){}
+Game::~Game(){
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    Mix_CloseAudio();
+    IMG_Quit();
+    SDL_Quit();
+}
 
 SDL_Renderer* Game::getRenderer(){
     return renderer;
@@ -76,18 +90,20 @@ Game& Game::getInstance(){
         clog << endl << "Create a new instance" << endl;
         instance = new Game("William Coelho da Silva - 180029274", 1024, 600);
         clog << endl << "instance: " << instance << endl;
+        return *instance;
     }else{
         clog << endl << "Instance already exists" << endl;
+        return *instance;
     }
-    return *instance;
 }
 
 void Game::Run(){
-    state = new State();
+    
     clog << endl << "Run the game: " << state->getQuitRequested() << endl;
     while(state->getQuitRequested()){
         state->Update(0);
         state->Render();
+        SDL_RenderPresent(Game::getRenderer());
         SDL_Delay(33);
     }
 }
