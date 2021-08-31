@@ -4,8 +4,8 @@ using namespace std;
 
 State::State(){
     quitRequested = true;
-    bg = new Sprite("./images/img1.jpg"); 
-    music = new Music("./musics/music1.ogg");
+    bg = new Sprite("./images/title.jpg"); 
+    music = new Music("./musics/stageState.ogg");
     music->Play(-1);
 }
 
