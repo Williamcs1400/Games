@@ -1,5 +1,5 @@
-#include "Sprite.hpp"
-#include "Game.hpp"
+#include "../include/Sprite.hpp"
+#include "../include/Game.hpp"
 
 using namespace std;
 

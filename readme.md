@@ -8,3 +8,4 @@
 ``` 
 g++ -std=c++11  Game.cpp State.cpp Sprite.cpp Music.cpp -Wall -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -o Game
 ```
+#### Após isso, pegue o **Game.exe** gerado na pasta **src** e mova-o para a pasta **assets** que ele conseguirá encontrar as dlls, imagens e sons necessários.
