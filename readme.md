@@ -3,7 +3,7 @@
 ### Professora Carla Denise Castanho
 
 
-#### Para compilar basta ter a biblioteca STD_Include no seu Path do TDM_GCC e executar o seguinte comando: 
+#### Para compilar basta ter a biblioteca STD_Include no seu Path do TDM_GCC e executar o seguinte comando na pasta **src**: 
 
 ``` 
 g++ -std=c++11  Game.cpp State.cpp Sprite.cpp Music.cpp -Wall -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -o Game
