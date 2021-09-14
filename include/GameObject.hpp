@@ -20,7 +20,7 @@
             void AddComponent(Component* cpt);
             void RemoveComponent(Component* cpt);
             Component* GetComponent(string type);
-            Rect box();
+            Rect box;
 
         private:
             vector<Component*> components;

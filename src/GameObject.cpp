@@ -1,6 +1,6 @@
 #include "../include/GameObject.hpp"
 
-GameObject::GameObject(){
+GameObject::GameObject() : box(Rect()){
     isDead = false;
 }
 
@@ -37,7 +37,8 @@ void GameObject::AddComponent(Component* cpt){
 void GameObject::RemoveComponent(Component* cpt){
     for(int i = 0; i < components.size() - 1; i++){
         if(components[i] == cpt){
-            // components.erase(i);
+            components.erase(components.begin() + i);
+
         }
     }
 }

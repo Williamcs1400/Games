@@ -3,11 +3,11 @@
 
 using namespace std;
 
-Sprite::Sprite(){
+Sprite::Sprite(GameObject& associated) : Component(associated){
     texture = nullptr;
 }
 
-Sprite::Sprite(const char* file){
+Sprite::Sprite(const char* file, GameObject& associated) : Component(associated){
     texture = nullptr;
     Open(file);
 }
@@ -42,10 +42,10 @@ void Sprite::setClip(int x, int y, int w, int h){
     clipRect.h = h;
 }
 
-void Sprite::render(int x, int y){
+void Sprite::render(){
     SDL_Rect rect;
-    rect.x = x;
-    rect.y = y;
+    rect.x = associated.box.x;
+    rect.y = associated.box.y;
     rect.w = width;
     rect.h = height;
 
@@ -62,6 +62,14 @@ int Sprite::getWidth(){
 
 int Sprite::getHeight(){
     return height;
+}
+
+void Sprite::Update(float dt) {
+
+}
+
+bool Sprite::Is(string type) {
+    return type == "Sprite";
 }
 
 bool Sprite::isOpen(){
