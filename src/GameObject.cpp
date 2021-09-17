@@ -1,6 +1,6 @@
 #include "../include/GameObject.hpp"
 
-GameObject::GameObject() : box(Rect()){
+GameObject::GameObject(){
     isDead = false;
 }
 
