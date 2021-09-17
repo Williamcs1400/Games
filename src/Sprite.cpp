@@ -28,7 +28,7 @@ void Sprite::Open(const char* file){
     if(texture == nullptr){
         clog << "Open error: " << SDL_GetError() << endl;
     }else{
-        clog << "IMG_LoadTexture sucess: " << SDL_GetError() << endl;
+        clog << "IMG_LoadTexture sucess: " << file << endl;
         int query = SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
         clog << "query: " << query << endl;
         setClip(0, 0, width, height);
@@ -42,7 +42,7 @@ void Sprite::setClip(int x, int y, int w, int h){
     clipRect.h = h;
 }
 
-void Sprite::render(){
+void Sprite::Render(){
     SDL_Rect rect;
     rect.x = associated.box.x;
     rect.y = associated.box.y;

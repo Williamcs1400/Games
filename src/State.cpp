@@ -4,7 +4,10 @@ using namespace std;
 
 State::State(){
     quitRequested = true;
-    bg = new Sprite("./images/title.jpg"); 
+
+    GameObject* GO = new GameObject();
+	GO->AddComponent(new Sprite("./images/title.jpg", *GO));
+	objectArray.emplace_back(GO);
     music = new Music("./musics/stageState.ogg");
     music->Play(-1);
 }
@@ -59,7 +62,8 @@ void State::Input() {
 			}
 			// Se não, crie um objeto
 			else {
-				Vec2 objPos = Vec2(200, 0 ).GetRotated(- PI + PI * (rand() % 1001)/500.0 ) + Vec2( mouseX, mouseY );
+				float pi = 3.14159265359;
+				Vec2 objPos = Vec2(200, 0).GetRotated(-pi + pi * (rand() % 1001)/500.0 ) + Vec2( mouseX, mouseY );
 				AddObject((int)objPos.x, (int)objPos.y);
 			}
 		}
@@ -73,27 +77,38 @@ void State::LoadAssets(){
 void State::Update(float dt){
     Input();
     for(int i = 0; i < objectArray.size(); i++){
-        objectArray[i].get()->Update(dt);
+        objectArray[i]->Update(dt);
     }
 
     for(int i = 0; i < objectArray.size(); i++){
-        if(objectArray[i].get()->IsDead()){
+        if(objectArray[i]->IsDead()){
             objectArray.erase(objectArray.begin() + i);
         }
     }
 }
 
 void State::Render(){
-    bg->render(0, 0);
     for(int i = 0; i < objectArray.size(); i++){
-        objectArray[i].get()->Render();
+        objectArray[i]->Render();
     }
 }
 
 void State::AddObject(int mouseX, int mouseY){
-    GameObject* GO;
-	Sprite* sprite = new Sprite("./images/penguinface.png");
-    GO->AddComponent();
+    GameObject* GO = new GameObject();
+	Sprite* sprite = new Sprite("./images/penguinface.png", *GO);
+	Sound* sound = new Sound(*GO, "./musics/boom.wav");
+	Face* face = new Face(*GO);
+
+	float posX = GO->box.w / 2;
+	float posY = GO->box.h / 2;
+    GO->box.x = mouseX - posX;
+    GO->box.y = mouseY - posY;
+
+	GO->AddComponent(sprite);
+	GO->AddComponent(sound);
+	GO->AddComponent(face);
+
+	objectArray.emplace_back(GO);
 }
 
 bool State::getQuitRequested(){ 

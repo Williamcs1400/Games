@@ -14,7 +14,10 @@
         public:
             Vec2();
             Vec2(float x, float y);
-            void GetRotated(float angle);
+            Vec2 GetRotated(float angle);
+            Vec2 operator+ (const Vec2& vec);
+            Vec2 operator- (const Vec2& vec);
+            friend Vec2 operator* (float value, const Vec2& vec);
             float x;
             float y;
     };

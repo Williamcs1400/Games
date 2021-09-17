@@ -4,8 +4,8 @@
     #include <iostream>
     #include <string>
     #include <stdlib.h>
-    #include <Component.hpp>
-    #include <GameObject.hpp>
+    #include "Component.hpp"
+    #include "GameObject.hpp"
     using namespace std;
 
     class Face : public Component{

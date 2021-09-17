@@ -4,7 +4,7 @@
     #include <iostream>
     #include <string>
     #include <stdlib.h>
-    #include <Vec2.hpp>
+    #include "Vec2.hpp"
 
     class Rect{
         public:

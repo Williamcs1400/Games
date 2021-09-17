@@ -47,7 +47,8 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "*.dll": "cpp",
-        "*.jpg": "cpp"
+        "*.jpg": "cpp",
+        "ctime": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }

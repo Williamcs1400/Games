@@ -5,12 +5,13 @@
     #include <string>
     #include <stdlib.h>
     #include "GameObject.hpp"
+    #include "Component.hpp"
     #include <vector>
     #define INCLUDE_SDL_MIXER
     #include <SDL2/SDL_mixer.h>
     using namespace std;
 
-    class Sound{
+    class Sound : public Component{
         public:
             Sound(GameObject& associated);
             Sound(GameObject& associated, string file);
@@ -21,7 +22,8 @@
             bool IsOpen();
             void Update(float dt);
             void Render();
-            void Is(string type);
+            bool Is(string type);
+            bool IsPlaying();
 
         private:
             Mix_Chunk* chunk;

@@ -8,19 +8,19 @@
     #define INCLUDE_SDL_IMAGE
     #define INCLUDE_SDL_MIXER
     #include <SDL2/SDL.h>
-    #include <Component.hpp>
-    #include <GameObject.hpp>
+    #include "Component.hpp"
+    #include "GameObject.hpp"
     #include <SDL2/SDL_image.h>
     #include <SDL2/SDL_mixer.h>
 
     class Sprite : public Component{
         public:
             Sprite(GameObject& associated);
-            Sprite(const char* file, GameObject& associated);
+            explicit Sprite(const char* file, GameObject& associated);
             ~Sprite();
             void Open(const char* file);
             void setClip(int x, int y, int w, int h);
-            void render();
+            void Render();
             int getWidth();
             int getHeight();
             bool isOpen();

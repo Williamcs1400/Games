@@ -4,10 +4,12 @@
     #include <iostream>
     #include <string>
     #include <stdlib.h>
-    #include <Component.hpp>
-    #include <Rect.hpp>
+    #include "Component.hpp"
+    #include "Rect.hpp"
     #include <vector>
     using namespace std;
+
+    class Component;
 
     class GameObject{
         public:

@@ -4,6 +4,7 @@
     #include <iostream>
     #include <string>
     #include <stdlib.h>
+    #include <ctime>
     #include "SDL_include.h"
     #include <vector>
     #include <memory>
@@ -14,11 +15,10 @@
     #include <SDL2/SDL_mixer.h>
     #include "Sprite.hpp"
     #include "Music.hpp"
-    #include <GameObject.hpp>
-    #include <Face.hpp>
-    #include <Vec2.hpp>
-
-    #define PI 3.14159265359;
+    #include "GameObject.hpp"
+    #include "Face.hpp"
+    #include "Vec2.hpp"
+    #include "Sound.hpp"
 
     using namespace std;
 
@@ -36,7 +36,7 @@
             Sprite *bg;
             Music* music;
             bool quitRequested = true;
-            vector<unique_ptr<GameObject>> objectArray;
+            vector<std::unique_ptr<GameObject>> objectArray;
 
     };
 

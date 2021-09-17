@@ -92,20 +92,20 @@ Game& Game::getInstance(){
         clog << endl << "instance: " << instance << endl;
         return *instance;
     }else{
-        clog << endl << "Instance already exists" << endl;
+        //clog << endl << "Instance already exists" << endl;
         return *instance;
     }
 }
 
 void Game::Run(){
-    
     clog << endl << "Run the game: " << state->getQuitRequested() << endl;
     while(state->getQuitRequested()){
         state->Update(0);
         state->Render();
-        SDL_RenderPresent(Game::getRenderer());
+        SDL_RenderPresent(getRenderer());
         SDL_Delay(33);
     }
+    clog << endl << "Error: " << SDL_GetError() << endl;
 }
 
 int main(int argc, char *argv[]){

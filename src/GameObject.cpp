@@ -44,5 +44,10 @@ void GameObject::RemoveComponent(Component* cpt){
 }
 
 Component* GameObject::GetComponent(string type){
-    
+    for(int i = 0; i < components.size(); i++){
+        if(components[i]->Is(type)){
+            return components[i];
+        }
+    }
+    return nullptr;
 }
