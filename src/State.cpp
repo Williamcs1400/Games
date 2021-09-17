@@ -6,7 +6,11 @@ State::State(){
     quitRequested = true;
 
     GameObject* GO = new GameObject();
-	GO->AddComponent(new Sprite("./images/title.jpg", *GO));
+	Sprite *bg = new Sprite("./images/title.jpg", *GO);
+	GO->AddComponent(bg);
+	GO -> box.x = 0;
+	GO -> box.y = 0;
+
 	objectArray.emplace_back(GO);
     music = new Music("./musics/stageState.ogg");
     music->Play(-1);

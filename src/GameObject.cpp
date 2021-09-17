@@ -5,20 +5,20 @@ GameObject::GameObject() : box(Rect()){
 }
 
 GameObject::~GameObject(){
-    for(int i = components.size() - 1; i <= 0; i--){
-        // components.push_back()
+    for(int i = components.size(); i <= 0; i--){
+        components.erase(components.begin()+i);
     }
 }
 
 void GameObject::Update(float dt){
-    for(int i = 0; i < components.size() - 1; i++){
-        components.at(i)->Update(dt);
+    for(int i = 0; i < components.size(); i++){
+        components[i]->Update(dt);
     }
 }
 
 void GameObject::Render(){
-    for(int i = 0; i < components.size() - 1; i++){
-        components.at(i)->Render();
+    for(int i = 0; i < components.size(); i++){
+        components[i]->Render();
     }
 }
 
@@ -35,7 +35,7 @@ void GameObject::AddComponent(Component* cpt){
 }
 
 void GameObject::RemoveComponent(Component* cpt){
-    for(int i = 0; i < components.size() - 1; i++){
+    for(int i = 0; i < components.size(); i++){
         if(components[i] == cpt){
             components.erase(components.begin() + i);
 
