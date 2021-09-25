@@ -56,6 +56,21 @@ void Sprite::Render(){
     
 }
 
+void Sprite::Render(int x, int y){
+    SDL_Rect rect;
+    rect.x = x;
+    rect.y = y;
+    rect.w = width;
+    rect.h = height;
+
+    Game& game = Game::getInstance();
+    if(isOpen()){
+        SDL_RenderCopy(game.getRenderer(), texture, &clipRect, &rect);
+    }
+
+}
+
+
 int Sprite::getWidth(){
     return width;
 }
