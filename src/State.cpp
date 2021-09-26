@@ -12,6 +12,17 @@ State::State(){
 	GO -> box.y = 0;
 
 	objectArray.emplace_back(GO);
+
+	GameObject* GO2 = new GameObject();
+	TileSet* TS = new TileSet(64, 64, "./images/tileset.png");
+	TileMap* aux = new TileMap(*GO2, "./assets/map/tileMap.txt", TS);
+
+	GO2->AddComponent(aux);
+	GO2->box.x = 0;
+	GO2->box.y = 0;
+
+	objectArray.emplace_back(GO2);
+
     music = new Music("./musics/stageState.ogg");
     music->Play(-1);
 }

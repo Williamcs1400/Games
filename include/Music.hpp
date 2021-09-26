@@ -11,6 +11,8 @@
     #include <SDL2/SDL_image.h>
     #include <SDL2/SDL_mixer.h>
 
+    using namespace std;
+
     class Music{
         public:
             Music();
@@ -18,7 +20,7 @@
             ~Music();
             void Play(int times);
             void Stop(int msToStop);
-            void Open(const char* file);
+            void Open(string file);
             bool IsOpen();
 
         private:

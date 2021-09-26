@@ -19,6 +19,7 @@
     #include "Face.hpp"
     #include "Vec2.hpp"
     #include "Sound.hpp"
+    #include "TileMap.hpp"
 
     using namespace std;
 

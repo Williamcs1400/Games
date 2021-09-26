@@ -16,7 +16,7 @@
             int GetTileHeight();
             
         private:
-            Sprite tileSet;
+            Sprite* tileSet;
             int rows;
             int columns;
             int tileWidth;

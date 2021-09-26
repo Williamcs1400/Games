@@ -5,13 +5,14 @@
     #include <string>
     #include <stdlib.h>
     #include <vector>
+    #include <fstream> 
     #include "GameObject.hpp"
     #include "Component.hpp"
     #include "TileSet.hpp"
     
     using namespace std;
 
-    class TileMap : Component{
+    class TileMap : public Component{
         public:
             TileMap(GameObject& associated, string file, TileSet* tileSet);
             void load(string file);
@@ -22,6 +23,8 @@
             int GetWidth();
             int GetHeight();
             int GetDepth();
+            void Update(float dt);
+            bool Is(string type);
             
         private:
             vector<int> tileMatrix; 

@@ -13,13 +13,15 @@
     #include <SDL2/SDL_image.h>
     #include <SDL2/SDL_mixer.h>
 
+    using namespace std;
+
     class Sprite : public Component{
         public:
             Sprite();
             Sprite(GameObject& associated);
             explicit Sprite(const char* file, GameObject& associated);
             ~Sprite();
-            void Open(const char* file);
+            void Open(string file);
             void setClip(int x, int y, int w, int h);
             void Render();
             void Render(int x, int y);

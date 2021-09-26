@@ -1,4 +1,5 @@
 #include "../include/Game.hpp"
+#include "../include/Resources.hpp"
 
 using namespace std;
 
@@ -105,6 +106,9 @@ void Game::Run(){
         SDL_RenderPresent(getRenderer());
         SDL_Delay(33);
     }
+    Resources::ClearImages();
+    Resources::ClearMusics();
+    Resources::ClearSounds();
     clog << endl << "Error: " << SDL_GetError() << endl;
 }
 

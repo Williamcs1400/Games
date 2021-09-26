@@ -1,4 +1,5 @@
 #include "../include/Music.hpp"
+#include "../include/Resources.hpp"
 
 using namespace std;
 
@@ -30,11 +31,12 @@ void Music::Stop(int msToStop){
 
 }
 
-void Music::Open(const char* file){
-    music = Mix_LoadMUS(file);
-    if(music == nullptr){
-        clog << endl << "Error Mix_LoadMUS" << endl;
-    }
+void Music::Open(string file){
+    // music = Mix_LoadMUS(file);
+    // if(music == nullptr){
+    //     clog << endl << "Error Mix_LoadMUS" << endl;
+    // }
+    music = Resources::GetMusic(file);
 }
 
 bool Music::IsOpen(){
