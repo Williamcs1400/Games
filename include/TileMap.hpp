@@ -9,6 +9,7 @@
     #include "GameObject.hpp"
     #include "Component.hpp"
     #include "TileSet.hpp"
+    #include <regex>
     
     using namespace std;
 

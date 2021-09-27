@@ -25,7 +25,10 @@ void Sprite::Open(string file){
     // }
 
     // Game& game = Game::getInstance();
-    texture =  Resources::GetImage(file);
+    if(!isOpen()){
+        texture = Resources::GetImage(file);
+    }
+
     if(texture == nullptr){
         clog << "Open error: " << SDL_GetError() << endl;
     }else{
@@ -62,8 +65,8 @@ void Sprite::Render(int x, int y){
     SDL_Rect rect;
     rect.x = x;
     rect.y = y;
-    rect.w = width;
-    rect.h = height;
+    rect.w = clipRect.w;
+    rect.h = clipRect.h;
 
     Game& game = Game::getInstance();
     if(isOpen()){

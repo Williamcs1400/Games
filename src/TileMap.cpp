@@ -17,9 +17,9 @@ void TileMap::load(string file){
     }
 
     size_t i = 0;
-    while ((i = newFile.find(",") != string::npos)){
+    while ((i = newFile.find(",")) != string::npos){
         string str = newFile.substr(0, i);
-        tileMatrix.push_back(stoi(str) - 1);
+        tileMatrix.push_back(std::stoi(str) - 1);
         newFile.erase(0, i + 1);
     }
 
@@ -35,8 +35,7 @@ void TileMap::SetTileSet(TileSet* tileSet){
 }
 
 int& TileMap::At(int x, int y, int z){
-    int i = (z * mapWidth * mapHeight) + (y * mapWidth) + x;
-    return i;
+    return tileMatrix.at(x + (y * mapWidth) + (z * mapWidth * mapHeight));
 }
 
 void TileMap::Render(){

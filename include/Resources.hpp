@@ -23,9 +23,9 @@
             static void ClearSounds();
 
         private:
-            static std::unordered_map<std::string, SDL_Texture*> imageTable;
-            static std::unordered_map<std::string, Mix_Music*> musicTable;
-            static std::unordered_map<std::string, Mix_Chunk*> soundTable;
+            static unordered_map<string, SDL_Texture*> imageTable;
+            static unordered_map<string, Mix_Music*> musicTable;
+            static unordered_map<string, Mix_Chunk*> soundTable;
     };
 
 #endif

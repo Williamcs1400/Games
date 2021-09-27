@@ -2,27 +2,26 @@
 #include "../include/Game.hpp"
 
 // INIT
-std::unordered_map<std::string, SDL_Texture*> Resources::imageTable;
-std::unordered_map<std::string, Mix_Music*> Resources::musicTable;
-std::unordered_map<std::string, Mix_Chunk*> Resources::soundTable;
+unordered_map<string, SDL_Texture*> Resources::imageTable;
+unordered_map<string, Mix_Music*> Resources::musicTable;
+unordered_map<string, Mix_Chunk*> Resources::soundTable;
 
 SDL_Texture* Resources::GetImage(string file){
-    auto local = Resources::imageTable.find(file);
+    auto local = imageTable.find(file);
 
-    if(local != Resources::imageTable.end()){
+    if(local != imageTable.end()){
         return local->second;
     }
 
     Game& game = Game::getInstance();
+    imageTable[file] = IMG_LoadTexture(game.getRenderer(), file.c_str());
     SDL_Texture* texture = IMG_LoadTexture(game.getRenderer(), file.c_str());
 
     if(texture == nullptr){
-        clog << "Error Resources::GetImage" << endl;
-        return nullptr;
-    }else{
-        Resources::imageTable.emplace(file, texture);
-        return texture;
+        clog << "ERROR GetImage";
     }
+
+    return texture;
 }
 
 void Resources::ClearImages(){
@@ -40,21 +39,17 @@ Mix_Music* Resources::GetMusic(string file){
         return local->second;
     }
 
+    musicTable[file] = Mix_LoadMUS(file.c_str());
     Mix_Music* music = Mix_LoadMUS(file.c_str());
 
-    if(music == nullptr){
-        clog << "Error Resources::GetMusic" << endl;
-        return nullptr;
-    }else{
-        Resources::musicTable.emplace(file, music);
-        return music;
-    }
+    return music;
 }
 
 void Resources::ClearMusics(){
     for(auto& i : Resources::musicTable){
         Mix_FreeMusic(i.second);
     }
+    Resources::musicTable.clear();
 }
 
 Mix_Chunk* Resources::GetSound(string file){
@@ -64,19 +59,16 @@ Mix_Chunk* Resources::GetSound(string file){
         return local->second;
     }
 
+    soundTable[file] = Mix_LoadWAV(file.c_str());
     Mix_Chunk* chunk = Mix_LoadWAV(file.c_str());
 
-    if(chunk == nullptr){
-        clog << "Error Resources::GetMusic" << endl;
-        return nullptr;
-    }else{
-        Resources::musicTable.emplace(file, chunk);
-        return chunk;
-    }
+    return chunk;
 }
 
 void Resources::ClearSounds(){
     for(auto& i : Resources::soundTable){
-            Mix_FreeChunk(i.second);
-        }
+        Mix_FreeChunk(i.second);
+    }
+    Resources::soundTable.clear();
+
 }

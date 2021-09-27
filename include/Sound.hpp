@@ -9,6 +9,8 @@
     #include <vector>
     #define INCLUDE_SDL_MIXER
     #include <SDL2/SDL_mixer.h>
+    #include "Resources.hpp"
+
     using namespace std;
 
     class Sound : public Component{
