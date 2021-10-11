@@ -21,10 +21,33 @@ Vec2 Vec2::operator+(const Vec2& vec){
     return Vec2(x + vec.x, y + vec.y);
 }
 
+void Vec2::operator+= (const Vec2& vec) {
+    x += vec.x;
+    y += vec.y;
+}
+
 Vec2 Vec2::operator-(const Vec2& vec){
     return Vec2(x - vec.x, y - vec.y);
 }
 
 Vec2 operator*(float value, const Vec2& vec){
     return Vec2(vec.x * value, vec.y * value);
+}
+
+void Vec2::operator-= (const Vec2& vec) {
+    x -= vec.x;
+    y -= vec.y;
+}
+float Vec2::Magnitude() {
+    float raiz = sqrt((x*x) + (y*y));
+    return raiz;
+}
+
+Vec2 Vec2::Normalized() {
+    float magnitude = Magnitude();
+    if(magnitude != 0) {
+        Vec2 reponse(x/magnitude, y/magnitude);
+        return reponse;
+    }
+    return Vec2();
 }

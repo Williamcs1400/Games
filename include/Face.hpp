@@ -6,6 +6,10 @@
     #include <stdlib.h>
     #include "Component.hpp"
     #include "GameObject.hpp"
+    #include "Sound.hpp"
+    #include "InputManager.hpp"
+    #include "Camera.hpp"
+
     using namespace std;
 
     class Face : public Component{
@@ -15,6 +19,7 @@
             void Update(float dt);
             void Render();
             bool Is(string type);
+            bool IsDead();
         private:
             int hitpoints;
     };

@@ -100,8 +100,10 @@ Game& Game::getInstance(){
 
 void Game::Run(){
     clog << endl << "Run the game: " << state->getQuitRequested() << endl;
+    InputManager& inputManager = InputManager::GetInstance();
     while(state->getQuitRequested()){
-        state->Update(0);
+        inputManager.Update();
+        state->Update(1);
         state->Render();
         SDL_RenderPresent(getRenderer());
         SDL_Delay(33);

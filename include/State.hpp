@@ -20,7 +20,8 @@
     #include "Vec2.hpp"
     #include "Sound.hpp"
     #include "TileMap.hpp"
-
+    #include "InputManager.hpp"
+    
     using namespace std;
 
     class State{
@@ -32,7 +33,6 @@
             void Render();
             bool getQuitRequested();
         private:
-            void Input();
             void AddObject(int mouseX, int mouseY);
             Sprite *bg;
             Music* music;
