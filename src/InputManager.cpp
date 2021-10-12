@@ -20,77 +20,76 @@ InputManager::~InputManager(){
 }
 
 void InputManager::Update(){
-    SDL_Event event;
-
-    updateCounter++;
-    quitRequested = false;
+    SDL_Event evt;
 
     SDL_GetMouseState(&mouseX, &mouseY);
+    quitRequested = false;
+    updateCounter++;
 
-    while(SDL_PollEvent(&event)){
-        if(event.type == SDL_MOUSEBUTTONUP){
-            mouseUpdate[event.button.button] = updateCounter;
-            mouseState[event.button.button] = false;
-        }
-
-        if(event.type == SDL_MOUSEBUTTONDOWN){
-            mouseUpdate[event.button.button] = updateCounter;
-            mouseState[event.button.button] = true;
-        }
-
-        if(event.type == SDL_KEYUP){
-            mouseUpdate[event.key.keysym.sym] = updateCounter;
-            mouseState[event.key.keysym.sym] = false;
-        }
-        
-        if(event.type == SDL_KEYDOWN && !event.key.repeat){
-            mouseUpdate[event.key.keysym.sym] = updateCounter;
-            mouseState[event.key.keysym.sym] = true;
-        }
-        
-        if(event.type == SDL_QUIT){
+    while(SDL_PollEvent(&evt)) {
+        if(evt.type == SDL_QUIT) {
             quitRequested = true;
+        }
+
+        if(evt.type == SDL_MOUSEBUTTONDOWN) {
+            mouseState[evt.button.button] = true;
+            mouseUpdate[evt.button.button] = updateCounter;
+        }
+
+        if(evt.type == SDL_MOUSEBUTTONUP) {
+            mouseState[evt.button.button] = false;
+            mouseUpdate[evt.button.button] = updateCounter;
+        }
+
+        if(evt.type == SDL_KEYDOWN && !evt.key.repeat) {
+            keyState[evt.key.keysym.sym] = true;
+            keyUpdate[evt.key.keysym.sym] = updateCounter;
+        }
+
+        if(evt.type == SDL_KEYUP) {
+            keyState[evt.key.keysym.sym] = false;
+            keyUpdate[evt.key.keysym.sym] = updateCounter;
         }
     }
 }
 
 bool InputManager::KeyPress(int key){
-    if((keyState.find(key) != keyState.end()) && (keyUpdate.at(key) == updateCounter) && (keyState.at(key) == updateCounter)){
+    if((keyState.find(key) != keyState.end()) && (keyUpdate.at(key) == updateCounter) && keyState.at(key)){
         return true;
     }
     return false;
 }
 
 bool InputManager::KeyRelease(int key){
-    if((keyState.find(key) != keyState.end()) && (keyUpdate.at(key) == updateCounter) && !(keyState.at(key) == updateCounter)){
+    if((keyState.find(key) != keyState.end()) && (keyUpdate.at(key) == updateCounter) && !keyState.at(key)){
         return true;
     }
     return false;
 }
 
 bool InputManager::IsKeyDown(int key){
-    if((keyState.find(key) != keyState.end()) && (keyUpdate.at(key) < updateCounter) && (keyState.at(key) < updateCounter)){
+    if((keyState.find(key) != keyState.end()) && (keyUpdate.at(key) < updateCounter) && keyState.at(key)){
             return true;
         }
         return false;
 }
 
 bool InputManager::MousePress(int button){
-    if((mouseUpdate[button] == updateCounter) && (mouseState[button] == updateCounter)){
+    if((mouseUpdate[button] == updateCounter) && mouseState[button]){
             return true;
         }
         return false;
 }
 
 bool InputManager::MouseRelease(int button){
-    if((mouseUpdate[button] == updateCounter) && !(mouseState[button] == updateCounter)){
+    if((mouseUpdate[button] == updateCounter) && !mouseState[button]){
         return true;
     }
     return false;
 }
 
 bool InputManager::IsMouseDown(int button){
-    if((mouseUpdate[button] < updateCounter) && (mouseState[button] < updateCounter)){
+    if((mouseUpdate[button] < updateCounter) && mouseState[button]){
         return true;
     }
     return false;

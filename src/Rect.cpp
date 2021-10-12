@@ -21,6 +21,12 @@ void Rect::operator+= (const Vec2& vec) {
     y += vec.y;
 }
 
+Vec2 Rect::center() const {
+    return Vec2(
+        x + (w / 2),
+        y + (h / 2)
+    );
+}
 
 bool Rect::contains(const Vec2& point){
     if((point.x >= x) && (point.y >= y) && (point.x <= x + w) && (point.y <= y + h)){

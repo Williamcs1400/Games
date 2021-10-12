@@ -12,6 +12,7 @@
             Rect();
             Rect(float x, float y, float w, float h);
             void operator+= (const Vec2& vec);
+            Vec2 center() const;
             float x;
             float y;
             float w;
