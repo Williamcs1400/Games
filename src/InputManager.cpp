@@ -20,7 +20,6 @@ InputManager::~InputManager(){
 }
 
 void InputManager::Update(){
-    clog << "InputManager::Update";
     SDL_Event event;
 
     updateCounter++;
@@ -52,8 +51,6 @@ void InputManager::Update(){
         if(event.type == SDL_QUIT){
             quitRequested = true;
         }
-        clog << "InputManager::Update AAAAAAAAAAAAAA";
-
     }
 }
 

@@ -29,7 +29,7 @@ void Camera::Update(float dt){
         if(inputManager.IsKeyDown(RIGHT_ARROW_KEY)){
             speed += Vec2(1, 0);
         }
-        pos += 400 * speed.Normalized();
+        pos += dt * 400 * speed.Normalized();
         speed = Vec2(0,0);
 
     }

@@ -21,6 +21,7 @@
     #include "Sound.hpp"
     #include "TileMap.hpp"
     #include "InputManager.hpp"
+    #include "CameraFollower.hpp"
     
     using namespace std;
 

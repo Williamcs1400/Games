@@ -8,6 +8,7 @@ State::State(){
     GameObject* GO = new GameObject();
 	Sprite *bg = new Sprite("./images/title.jpg", *GO);
 	GO->AddComponent(bg);
+	GO->AddComponent(new CameraFollower(*GO)); 
 	GO -> box.x = 0;
 	GO -> box.y = 0;
 
@@ -57,8 +58,19 @@ void State::Update(float dt){
 }
 
 void State::Render(){
+	TileMap* tileMap = nullptr;
     for(unsigned int i = 0; i < objectArray.size(); i++){
-        objectArray[i]->Render();
+        if(objectArray[i]->GetComponent("TileMap") != nullptr){
+			tileMap = (TileMap*) objectArray[i]->GetComponent("TileMap");
+			tileMap->RenderLayer(0, Camera::pos.x, Camera::pos.y);
+		}else{
+			objectArray[i]->Render();
+		}
+    }
+	if(tileMap != nullptr) {
+        for(int i = 2; i <= tileMap->GetDepth(); i++) {
+            tileMap->RenderLayer(i - 1, Camera::pos.x * i, Camera::pos.y * i);
+        }
     }
 }
 
@@ -72,6 +84,7 @@ void State::AddObject(int mouseX, int mouseY){
 	float posY = GO->box.h / 2;
     GO->box.x = mouseX - posX;
     GO->box.y = mouseY - posY;
+    GO->box += Camera::pos;
 
 	GO->AddComponent(sprite);
 	GO->AddComponent(sound);

@@ -7,6 +7,7 @@
     #include "SDL_include.h"
     #include "GameObject.hpp"
     #include "Component.hpp"
+    #include "Camera.hpp"
     #define INCLUDE_SDL_IMAGE
     #define INCLUDE_SDL_MIXER
 
@@ -14,7 +15,7 @@
 
     class CameraFollower : public Component{
         public:
-            CameraFollower(GameObject* go);
+            CameraFollower(GameObject& go);
             void Update(float dt);
             void Render();
             bool Is(string type);

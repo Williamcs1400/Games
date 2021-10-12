@@ -11,6 +11,7 @@
             bool contains(const Vec2& point);
             Rect();
             Rect(float x, float y, float w, float h);
+            void operator+= (const Vec2& vec);
             float x;
             float y;
             float w;

@@ -57,7 +57,7 @@ void Sprite::Render(){
     // if(isOpen()){
     //     SDL_RenderCopy(game.getRenderer(), texture, &clipRect, &rect);
     // }
-    Render(associated.box.x, associated.box.y);
+    Render(associated.box.x - Camera::pos.x, associated.box.y - Camera::pos.y);
     
 }
 

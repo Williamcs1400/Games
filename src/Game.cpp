@@ -68,6 +68,12 @@ Game::Game(const char* title, int width, int height){
     }
 
     state = new State();
+
+    srand(time(NULL));
+
+    //init variables
+    frameStart = 0;
+    CalculateDeltaTime();
 }
 
 Game::~Game(){
@@ -98,12 +104,23 @@ Game& Game::getInstance(){
     }
 }
 
+void Game::CalculateDeltaTime() {
+    int initTime = SDL_GetTicks();
+    dt = (float) ((initTime - frameStart)/1000.0);
+    frameStart = initTime;
+}
+
+float Game::GetDeltaTime() {
+    return dt;
+}
+
 void Game::Run(){
     clog << endl << "Run the game: " << state->getQuitRequested() << endl;
     InputManager& inputManager = InputManager::GetInstance();
-    while(state->getQuitRequested()){
+    while(true){
+        CalculateDeltaTime();
         inputManager.Update();
-        state->Update(1);
+        state->Update(dt);
         state->Render();
         SDL_RenderPresent(getRenderer());
         SDL_Delay(33);

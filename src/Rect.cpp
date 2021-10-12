@@ -16,6 +16,12 @@ Rect::Rect(float x, float y, float w, float h){
     this->h = h;
 }
 
+void Rect::operator+= (const Vec2& vec) {
+    x += vec.x;
+    y += vec.y;
+}
+
+
 bool Rect::contains(const Vec2& point){
     if((point.x >= x) && (point.y >= y) && (point.x <= x + w) && (point.y <= y + h)){
         return true;
