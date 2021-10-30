@@ -16,9 +16,45 @@ Rect::Rect(float x, float y, float w, float h){
     this->h = h;
 }
 
+Rect operator+(const Rect& rec, const Vec2& vec) {
+    return Rect(
+        rec.x + vec.x,
+        rec.y + vec.y,
+        rec.w,
+        rec.h
+    );
+}
+
+Rect operator+(const Vec2& vec, const Rect& rec) {
+    return Rect(
+        rec.x + vec.x,
+        rec.y + vec.y,
+        rec.w,
+        rec.h
+    );
+}
+
 void Rect::operator+= (const Vec2& vec) {
     x += vec.x;
     y += vec.y;
+}
+
+Rect operator-(const Rect& rec, const Vec2& vec) {
+    return Rect(
+        rec.x - vec.x,
+        rec.y - vec.y,
+        rec.w,
+        rec.h
+    );
+}
+
+void Rect::operator-=(const Vec2& vec) {
+    x -= vec.x;
+    y -= vec.y;
+}
+
+float Rect::distance_to(const Rect& to) {
+    return this->center().distance(to.center());
 }
 
 Vec2 Rect::center() const {
@@ -28,8 +64,8 @@ Vec2 Rect::center() const {
     );
 }
 
-bool Rect::contains(const Vec2& point){
-    if((point.x >= x) && (point.y >= y) && (point.x <= x + w) && (point.y <= y + h)){
+bool Rect::contains(const Vec2& vec){
+    if((vec.x >= x) && (vec.y >= y) && (vec.x <= x + w) && (vec.y <= y + h)){
         return true;
     }
     return false;

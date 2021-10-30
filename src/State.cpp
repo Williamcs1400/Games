@@ -80,10 +80,10 @@ void State::AddObject(int mouseX, int mouseY){
 	Sound* sound = new Sound(*GO, "./musics/boom.wav");
 	Face* face = new Face(*GO);
 
-	float posX = GO->box.w / 2;
-	float posY = GO->box.h / 2;
-    GO->box.x = mouseX - posX;
-    GO->box.y = mouseY - posY;
+	// float posX = GO->box.w / 2;
+	// float posY = GO->box.h / 2;
+    GO->box.x = mouseX - (GO->box.w / 2);
+    GO->box.y = mouseY - (GO->box.h / 2);
     GO->box += Camera::pos;
 
 	GO->AddComponent(sprite);

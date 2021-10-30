@@ -106,7 +106,7 @@ Game& Game::getInstance(){
 
 void Game::CalculateDeltaTime() {
     int initTime = SDL_GetTicks();
-    dt = (float) ((initTime - frameStart)/1000.0);
+    dt = ((float)(initTime - frameStart)/1000.0);
     frameStart = initTime;
 }
 

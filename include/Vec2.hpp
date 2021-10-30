@@ -20,6 +20,7 @@
             Vec2 operator- (const Vec2& vec);
             void operator-= (const Vec2& vec);
             float Magnitude();
+            float distance(const Vec2& vec);
             Vec2 Normalized();
             friend Vec2 operator* (float value, const Vec2& vec);
             float x;
